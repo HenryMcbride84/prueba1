@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.cancha {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  background: green;
+  border: 2px solid white;
+}
+
+.jugador {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: red;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h3>Formación:</h3>
+<button onclick="formacion433()">4-3-3</button>
+<button onclick="formacion442()">4-4-2</button>
+
+<div class="cancha" id="cancha"></div>
+
+<script>
+const cancha = document.getElementById("cancha");
+
+// Crear 11 jugadores
+let jugadores = [];
+for (let i = 0; i < 11; i++) {
+  let j = document.createElement("div");
+  j.classList.add("jugador");
+  j.innerText = i + 1;
+  cancha.appendChild(j);
+  jugadores.push(j);
+}
+
+// Función para posicionar
+function posicionar(coords) {
+  coords.forEach((pos, i) => {
+    jugadores[i].style.left = pos.x + "px";
+    jugadores[i].style.top = pos.y + "px";
+  });
+}
+
+// 4-3-3
+function formacion433() {
+  posicionar([
+    {x:280,y:350}, // portero
+
+    {x:100,y:250},{x:220,y:250},{x:340,y:250},{x:460,y:250}, // defensa
+
+    {x:150,y:150},{x:280,y:150},{x:410,y:150}, // medio
+
+    {x:120,y:50},{x:280,y:50},{x:440,y:50} // ataque
+  ]);
+}
+
+// 4-4-2
+function formacion442() {
+  posicionar([
+    {x:280,y:350},
+
+    {x:100,y:250},{x:220,y:250},{x:340,y:250},{x:460,y:250},
+
+    {x:100,y:150},{x:220,y:150},{x:340,y:150},{x:460,y:150},
+
+    {x:200,y:50},{x:360,y:50}
+  ]);
+}
+
+// iniciar con 4-3-3
+formacion433();
+</script>
+
+</body>
+</html>
